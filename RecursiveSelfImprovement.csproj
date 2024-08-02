@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <RootNamespace>WeatherElectric.RecursiveSelfImprovement</RootNamespace>
+        <LangVersion>default</LangVersion>
+        <IsPackable>false</IsPackable>
+        <Company>Weather Electric</Company>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <AssemblyName>RecursiveSelfImprovement</AssemblyName>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+        <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+        <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+        <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+        <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+        <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+        <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DefineConstants>TRACE;MELONLOADER</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DefineConstants>TRACE;MELONLOADER</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="Links\**"/>
+        <Compile Remove="Staging\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="Links\**"/>
+        <EmbeddedResource Remove="Staging\**"/>
+        <None Remove="Utilities\QolAssurance\Resources\Android.bundle" />
+        <EmbeddedResource Include="Utilities\QolAssurance\Resources\Android.bundle" />
+        <None Remove="Utilities\QolAssurance\Resources\Windows.bundle" />
+        <EmbeddedResource Include="Utilities\QolAssurance\Resources\Windows.bundle" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Links\**"/>
+        <None Remove="Staging\**"/>
+        <None Remove="Refs\**"/>
+        <None Remove=".gitignore"/>
+        <None Remove="README.md"/>
+        <None Remove="setup.bat"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="BoneLib">
+            <HintPath>Links\Mods\BoneLib.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>Links\Game\MelonLoader\net6\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <PackageReference Include="LavaGang.MelonLoader" Version="0.6.4"/>
+        <PackageReference Include="Bonelab.GameLibs.Steam" Version="5.0.0"/>
+        <PackageReference Include="Il2CppInterop.Runtime" Version="1.4.5"/>
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)Links\Mods&quot;&#xA;COPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)Staging\Mods&quot;"/>
+    </Target>
+
+</Project>

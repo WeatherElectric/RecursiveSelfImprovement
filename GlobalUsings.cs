@@ -1,0 +1,12 @@
+global using System;
+global using System.Reflection;
+global using BoneLib;
+global using MelonLoader;
+global using WeatherElectric.RecursiveSelfImprovement.Melon;
+global using BoneLib.BoneMenu;
+global using UnityEngine;
+global using WeatherElectric.RecursiveSelfImprovement.Menu;
+global using Object = UnityEngine.Object;
+global using PalletList = Il2CppSystem.Collections.Generic.List<Il2CppSLZ.Marrow.Warehouse.Pallet>;
+global using CrateList = Il2CppSystem.Collections.Generic.List<Il2CppSLZ.Marrow.Warehouse.Crate>;
+global using TagList = Il2CppSystem.Collections.Generic.List<string>;
