@@ -1,4 +1,6 @@
-﻿namespace WeatherElectric.RecursiveSelfImprovement.Utilities.Unredacted;
+﻿using Il2CppSLZ.Marrow.Warehouse;
+
+namespace WeatherElectric.RecursiveSelfImprovement.Utilities.Unredacted;
 
 internal class Unredacted : Utility
 {
@@ -20,6 +22,21 @@ internal class Unredacted : Utility
                 crate._redacted = false;
                 ModConsole.Msg($"[Unredacted] Unredacted {crate.name}!", 1);
             }
+        }
+    }
+
+    protected override void OnPalletAdded(Barcode barcode)
+    {
+        if (!Preferences.UnredactCrates.Value) return;
+        var success = AssetWarehouse.Instance.TryGetPallet(barcode, out var pallet);
+        if (!success) return;
+        var crates = pallet.Crates;
+        foreach (var crate in crates)
+        {
+            if (!crate.Redacted) continue;
+            crate.Redacted = false;
+            crate._redacted = false;
+            ModConsole.Msg($"[Unredacted] Unredacted {crate.name}!", 1);
         }
     }
     

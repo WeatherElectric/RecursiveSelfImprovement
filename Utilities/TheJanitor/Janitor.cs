@@ -189,7 +189,8 @@ internal class Janitor : Utility
         if (poolees.Length == 0) return;
         foreach (var poolee in poolees)
         {
-            if (poolee.SpawnableCrate.Barcode == (Barcode)"SLZ.BONELAB.Core.DefaultPlayerRig") return;
+            if (poolee.SpawnableCrate.Barcode.ID == "SLZ.BONELAB.Core.Spawnable.RigManagerBlank") return;
+            if (poolee.SpawnableCrate.Barcode.ID == "SLZ.BONELAB.Core.Spawnable.LegacyUIEventSystem") return;
             poolee.Despawn();
         }
         if (!nonotif) Notifier.Send(EverythingCleared);
@@ -201,7 +202,7 @@ internal class Janitor : Utility
         if (poolees.Length == 0) return;
         foreach (var poolee in poolees)
         {
-            if (poolee.SpawnableCrate.Barcode == (Barcode)CommonBarcodes.Misc.NimbusGun || poolee.SpawnableCrate.Barcode == (Barcode)CommonBarcodes.Misc.SpawnGun || poolee.SpawnableCrate.Barcode == (Barcode)CommonBarcodes.Misc.Constrainer) return;
+            if (poolee.SpawnableCrate.Barcode.ID is CommonBarcodes.Misc.NimbusGun or CommonBarcodes.Misc.SpawnGun or CommonBarcodes.Misc.Constrainer)
             {
                 poolee.Despawn();
             }

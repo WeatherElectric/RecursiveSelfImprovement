@@ -23,7 +23,7 @@ internal class QolAssurance : Utility
     protected override void OnSpawnablePlaced(GameObject obj, Poolee poolee)
     {
         if (!Preferences.EnableItemPatches.Value) return;
-        if (poolee.SpawnableCrate.Barcode == (Barcode)"SLZ.BONELAB.Content.Spawnable.AlarmClock") FixAlarmClock(obj);
+        if (poolee.SpawnableCrate.Barcode.ID == "SLZ.BONELAB.Content.Spawnable.AlarmClock") FixAlarmClock(obj);
     }
 
     private static void FixAlarmClock(GameObject obj)

@@ -48,7 +48,6 @@ public class Main : MelonMod
         Hooking.OnLevelLoaded += OnLevelLoad;
         Hooking.OnLevelUnloaded += OnlevelUnload;
         Hooking.OnUIRigCreated += OnPlayerReady;
-        
     }
     
     private static void OnWarehouseLoaded()
@@ -89,8 +88,8 @@ public class Main : MelonMod
     private static class PooleeStart
     {
         [HarmonyPostfix]
-        [HarmonyPatch(nameof(Poolee.OnSpawn))]
-        private static void Postfix(Poolee __instance)
+        [HarmonyPatch(nameof(Poolee.OnInitialize))]
+        private static void Postfix(Poolee __instance, IPoolable poolable)
         {
             Utility.SpawnablePlaced(__instance, __instance.gameObject);
         }
