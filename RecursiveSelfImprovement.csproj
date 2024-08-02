@@ -45,6 +45,7 @@
         <EmbeddedResource Include="Utilities\QolAssurance\Resources\Android.bundle" />
         <None Remove="Utilities\QolAssurance\Resources\Windows.bundle" />
         <EmbeddedResource Include="Utilities\QolAssurance\Resources\Windows.bundle" />
+        <None Remove="LICENSE" />
     </ItemGroup>
 
     <ItemGroup>
